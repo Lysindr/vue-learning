@@ -1,0 +1,33 @@
+body {
+	background-color: #f5f5f5;
+}
+
+ul {
+	max-width: 400px;
+	background-color: #fff;
+	box-shadow: 0 0 1px rgba(0,0,0, .5);
+}
+
+li {
+	padding: 5px 0;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.strike {
+	text-decoration: line-through;
+	color: #333;
+}
+
+.popup {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 100%;
+	max-width: 350px;
+	padding: 30px;
+	border: 2px solid #000;
+	background-color: #fff;
+	text-align: center;
+	transform: translate(-50%, -50%);
+}
