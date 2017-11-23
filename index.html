@@ -5,6 +5,8 @@
 	<!-- stylesheet -->
 	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="css/main.css"></link>
+
+	
 </head>
 <body>
 
@@ -68,10 +70,54 @@
 
 	<div id="modal">
 		<h2>Компоненты</h2>
-		<modal buttontext="Хорошо">Вопрос 1</modal>	
-		<modal buttontext="Согласен">Вопрос 2</modal>	
+		<modal buttonconfirm="Хорошо" buttoncancel="Отмена">Вопрос 1</modal>
+		<modal buttonconfirm="Согласен" buttoncancel="Не согласен">Вопрос 2</modal>
 	</div>
 
+	<hr>
+
+	<div id="cars-components">	
+		<app-car></app-car>
+	</div>
+
+	<div id="cars-components-2">
+		<hr>
+		<app-car></app-car>
+	</div>
+
+	<hr>
+
+	<div id="dynamic-components">
+		<h2>Динамические компоненты</h2>
+		<nav>
+			<button v-on:click="switchView('square')">Квадрат</button>
+			<button v-on:click="switchView('triangle')">Треугольник</button>
+			<button v-on:click="switchView('circleBase')">Круг</button>
+		</nav>
+
+		<transition name="switch">
+			<component v-bind:is="currentView"></component>			
+		</transition>
+	</div>
+
+	<hr>
+
+	<div id="events">
+		<message @message-saved="handleMessage"></message>
+		<ul>
+			<li v-for="message in messages">{{ message }}</li>
+		</ul>
+	</div>
+	
+
+
+
+
+
+
+
+
+	<!-- Templates -->
 	<template id="modal-template">
 		<div class="modal-wrapper">
 			<div class="modal" v-show="active">
@@ -81,8 +127,8 @@
 						<h3><slot></slot></h3>
 					</div>
 					<div class="modal__footer">
-						<button v-on:click="onConfirm()">{{ buttontext }}</button>
-						<button v-on:click="onCancel()">Отмена</button>
+						<button v-on:click="onConfirm()">{{ buttonconfirm }}</button>
+						<button v-on:click="onCancel()">{{ buttoncancel }}</button>
 					</div>
 				</div>
 			</div>
@@ -91,6 +137,28 @@
 		</div>
 	</template>
 
+	<template id="car">
+		<div>
+			<div class="car" v-for="car in cars">
+				<p>{{ car.model }}</p>
+			</div>
+		</div>		
+	</template>
+
+	<template id="square-template">
+		<div class="square"></div>
+	</template>
+
+	<template id="triangle-template">
+		<div class="triangle"></div>
+	</template>
+
+	<template id="circle-template">
+		<div class="circle"></div>
+	</template>
+
+
+	<!-- init Vue JS -->
 	<script src="https://unpkg.com/vue"></script>
 	<script src="js/main.js"></script>
 </body>
