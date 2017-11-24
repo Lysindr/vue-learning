@@ -1,3 +1,20 @@
+
+Vue.component('text-comp', {
+	template: '<div v-on:click="sum()" style="color: green;">Пользовательский компоент: {{ comment }} - {{ counter }}</div>',
+	data: function() {
+		return {
+			comment: 'user comment',
+			counter: 0
+		}
+	},
+	methods: {
+		sum: function() {
+			this.counter = this.counter + 1;
+		}
+	}
+});
+
+
 new Vue({
 	el: "#app",
 	data: {
@@ -7,8 +24,13 @@ new Vue({
 		uppercase: function(value) {
 			return value.toUpperCase();
 		}
+	},
+	computed: {
+		reversedMessage: function() {
+			return this.message.split('').reverse().join('');
+		}
 	}
-})
+});
 
 // Simple list
 var list_bears = new Vue({
@@ -31,7 +53,17 @@ var list_bears = new Vue({
 				name: "губач",
 				status: false
 			}
-		]
+		],
+		inputText: ''
+	},
+	methods: {
+		addBear: function() {
+			this.bears.push({ name: this.inputText, status: false });
+			this.inputText = '';
+		},
+		deleteBear: function() {
+			this.bears.pop();
+		}
 	}
 });
 
@@ -114,6 +146,8 @@ var modal = new Vue({
 
 
 //
+
+
 Vue.component('app-car', {
 	template: '#car',
 	data: function() {
@@ -191,3 +225,51 @@ var events = new Vue({
 		}
 	}
 })
+
+
+/* Tabs */
+
+// Vue.component('tabs', {
+// 	template: '#tabs-template',
+// 	data: function() {
+// 		return {
+// 			tabs: []
+// 		}
+// 	},
+
+// 	created: function() {
+// 		this.tabs = this.$children;
+// 	},
+
+// 	methods: {
+// 		selectTab: function(selectedTab) {
+// 			this.tabs.forEach(tab => {
+// 				tab.selected = (tab.name == selectedTab.name);
+// 			})
+// 		}
+// 	}
+// });
+
+// Vue.component('tab', {
+// 	template: '#tab-template',
+
+// 	props: {
+// 		name: {
+// 			required: true
+// 		},
+// 		selected: {
+// 			default: false
+// 		}
+// 	}
+// });
+
+
+// var tabs = new Vue({
+// 	el: "#tabs",	
+// 	data: {
+
+// 	},
+// 	computed: {
+
+// 	}
+// });

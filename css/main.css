@@ -55,11 +55,11 @@ button:disabled {
 	background-color: green;
 }
 
-// *** Transition
+/* Transition */
 
 .slide {
 	transition: 1.5s all;
-}
+} 
 
 /* Анимация перехода */
 .slide-enter-active, .slide-leave-active {
@@ -70,7 +70,7 @@ button:disabled {
 	transform: translateX(-100%);
 }
 
-//
+
 .switch {
 	transition: 1.5s all;
 }
@@ -91,7 +91,7 @@ button:disabled {
 	transform: scale(0.3);
 }
 
-// Transition END
+ /* Transition END */
 
 .modal {
 	display: flex;
@@ -150,4 +150,29 @@ button:disabled {
 	height: 100px;
 	border-radius: 50%;
 	background-color: #333;
+}
+
+/* Tabs */
+
+.tabs__nav {
+	border-bottom: 1px solid #000;
+	font-family: "Arial", serif;
+}
+
+.tabs__container {
+	background-color: #fff;
+	padding: 10px;
+}
+
+.tabs__item {
+	display: inline-block;
+	padding: 5px;
+	background-color: #ccc;
+	color: green;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.tabs__item.is-active {
+	background-color: #87cefa;
 }

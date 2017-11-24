@@ -12,16 +12,22 @@
 
 	<div id="app">
 		<h1>{{ message }}</h1>
+		<h1>{{ reversedMessage }}</h1>
 		<input type="text" v-model="message">
 		<pre>
 			{{ $data }}
 		</pre>
+		<text-comp></text-comp>
+		<text-comp></text-comp>
 	</div>
 
 	<hr>
 
 	<div id="list-bears">
 		<h2>List Bears</h2>
+		<input type="text" v-model="inputText">
+		<button v-on:click="addBear()">Add Bear</button>
+		<button v-on:click="deleteBear()">Delete Bear</button>
 		<ul>
 			<li v-for="bear in bears" v-bind:class="{ 'strike': bear.status }">{{ bear.name }}</li>
 		</ul>
@@ -110,7 +116,44 @@
 	</div>
 	
 
+	<hr>
 
+<!-- 	<div id="tabs">
+		<h2>Tabs</h2>		
+
+		<tabs>
+			<tab v-bind:selected="true" name="About Us">
+				<h3>About</h3>
+			</tab>
+
+			<tab name="Culture">
+				<h3>Culture</h3>
+			</tab>
+
+			<tab name="News">
+				<h3>News</h3>
+			</tab>
+		</tabs>
+		
+	</div>
+
+	<template id="tabs-template">
+		<div class="tabs">
+			<div class="tabs__nav">
+				<a href="#" v-on:click.prevent="selectTab(tab)" v-bind:class="{ 'tabs__item': true, 'is-active': tab.selected }" v-for="tab in tabs">{{ tab.name }}</a>
+			</div>
+
+			<div class="tabs__container">
+				<slot></slot>
+			</div>
+		</div>		
+	</template>
+
+	<template id="tab-template">
+		<div class="tabs__content">
+			<slot></slot>
+		</div>
+	</template> -->
 
 
 
@@ -133,7 +176,7 @@
 				</div>
 			</div>
 
-			<a href="#" class="link" v-on:click.prevent="open()">Ссылка</a>
+			<a href="#" class="link" v-on:click.prevent="open()">Модальное окно</a>
 		</div>
 	</template>
 
@@ -157,6 +200,9 @@
 		<div class="circle"></div>
 	</template>
 
+
+
+	
 
 	<!-- init Vue JS -->
 	<script src="https://unpkg.com/vue"></script>
