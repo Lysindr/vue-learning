@@ -222,10 +222,25 @@ var events = new Vue({
 		handleMessage: function(message) {
 			console.log(message);
 			this.messages.push(message);
+			console.log(this.messages);
 		}
 	}
-})
+});
 
+
+var counter = new Vue({
+	el: "#counter",
+	data: {
+		counter: 0,
+		checkedNames: []
+	},
+	methods: {
+		increaseCounter: function() {
+			console.log(this.counter);
+			return this.counter++;		
+		}
+	}
+});
 
 /* Tabs */
 

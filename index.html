@@ -109,6 +109,7 @@
 	<hr>
 
 	<div id="events">
+		<h2>Создание событий</h2>
 		<message @message-saved="handleMessage"></message>
 		<ul>
 			<li v-for="message in messages">{{ message }}</li>
@@ -117,6 +118,18 @@
 	
 
 	<hr>
+
+	<div id="counter">
+		<button v-on:click="increaseCounter()">+1</button><p>Кнопка нажата:  {{ counter }} раз</p>
+		<br>
+		<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+		<label for="jack">Jack</label>
+		<input type="checkbox" id="john" value="John" v-model="checkedNames">
+		<label for="john">John</label>
+		<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+		<label for="mike">Mike</label>
+		<p>Отмеченные именна: {{ checkedNames }}</p>
+	</div>
 
 <!-- 	<div id="tabs">
 		<h2>Tabs</h2>		
@@ -163,6 +176,7 @@
 	<!-- Templates -->
 	<template id="modal-template">
 		<div class="modal-wrapper">
+
 			<div class="modal" v-show="active">
 				<div class="modal__overlay" v-on:click="close()"></div>
 				<div class="modal__content">
@@ -177,6 +191,7 @@
 			</div>
 
 			<a href="#" class="link" v-on:click.prevent="open()">Модальное окно</a>
+
 		</div>
 	</template>
 
@@ -187,6 +202,7 @@
 			</div>
 		</div>		
 	</template>
+
 
 	<template id="square-template">
 		<div class="square"></div>
