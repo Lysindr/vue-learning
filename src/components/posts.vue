@@ -42,12 +42,16 @@ export default {
 				params: {
 					_start: 0,
 					_limit: 15
+				},
+				headers: {
+					'Content-Type': 'application/json'
 				}
 			}
 
 			this.$http.get(this.endpoint, options).then(function(response) {
 				// ответ пришел успешно
 				console.log(response);
+				console.log(response.data);
 				this.posts = response.data;
 			}, function(error) {
 				// ошибка

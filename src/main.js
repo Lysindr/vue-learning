@@ -1,13 +1,38 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
+import VueRouter from 'vue-router'
 
 Vue.use(VueResource);
+Vue.use(VueRouter);
+
+// Для работы vue-router нужно создать базовый экземпляр и передать в него настройки
+// (например, массив со всеми маршрутами(страницами) для приложения)
+
+// *** Imports Views components (PAGES)
+import Brands from './views/Brands.vue'
+import Contacts from './views/Contacts.vue'
+import Projects from './views/Projects.vue'
+import Blog from './views/Blog.vue'
+import SinglePost from './views/SinglePost.vue'
+
+var router= new VueRouter({
+	routes: [
+		{ path: '/brands', component: Brands}, // страница 'brands', содержимое = компонент './views/Brands.vue'
+		{ path: '/projects', component: Projects},
+		{ path: '/contacts', component: Contacts},
+		{ path: '/blogs', component: Blog},
+		{ path: '/post/:id', name: 'post', component: SinglePost}
+	]
+});
+
+
 
 
 // ***  Imports components
 import App from './App.vue'
-import Test from './test.vue'
-import Posts from './components/posts.vue' 
+import Test from './components/test.vue'
+import Posts from './components/posts.vue'
+import MainHeader from './components/main-header.vue' 
 
 Vue.component('test-vue', Test); // глобальный компонент, можем использовать в других файлах 
 // Если компонент нужно использовать в одном/нескольких компонентах, можно импортировать 
@@ -15,14 +40,14 @@ Vue.component('test-vue', Test); // глобальный компонент, м�
 
 new Vue({
 	el: '#app',
-	data: {
-		// endpoint: 'https://jsonplaceholder.typicode.com/posts'		
+	router: router,
+	components: {
+		'posts': Posts,
+		'main-header': MainHeader
 	},
 	methods: {
 		
-	},
-	created: function() {
-		
-	},
-	render: h => h(App) 
+	}//,
+	// render: h => h(App) 
 }) 
+

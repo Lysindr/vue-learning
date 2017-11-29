@@ -4,9 +4,13 @@
 			<img src="./assets/logo.png">
 		</div>
 
+		<!-- test component start -->
 		<test-vue></test-vue>
+		<!-- test component end -->
 
+		<!-- Posts component start -->
 		<posts></posts>	
+		<!-- Posts component end -->
 		
 	</div>
 </template>

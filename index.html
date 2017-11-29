@@ -5,7 +5,26 @@
 	<title>vue-learning</title>
 </head>
 <body>
-	<div id="app"></div>
+	<div id="app">
+
+		<main-header></main-header>
+
+		<div class="main-content">
+			<router-view></router-view>
+		</div>
+		
+	</div>
+
+	<style>
+		body {
+			font-family: 'Avenir', Helvetica, Arial, sans-serif;
+		}
+		.main-content {
+			max-width: 1200px;
+			margin-left:  auto;
+			margin-right: auto;
+		}
+	</style>
 	
 	<script src="/dist/build.js"></script>
 </body>
