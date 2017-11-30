@@ -14,6 +14,7 @@ import Contacts from './views/Contacts.vue'
 import Projects from './views/Projects.vue'
 import Blog from './views/Blog.vue'
 import SinglePost from './views/SinglePost.vue'
+import Gallery from './views/Gallery.vue'
 
 var router= new VueRouter({
 	routes: [
@@ -21,7 +22,8 @@ var router= new VueRouter({
 		{ path: '/projects', component: Projects},
 		{ path: '/contacts', component: Contacts},
 		{ path: '/blogs', component: Blog},
-		{ path: '/post/:id', name: 'post', component: SinglePost}
+		{ path: '/post/:id', name: 'post', component: SinglePost},
+		{ path: '/gallery', component: Gallery}
 	]
 });
 

@@ -3,9 +3,10 @@
 		<img class="main-header__logo" src="../assets/logo.png">
 		<nav class="main-nav">
 			<router-link to="/brands">Brands</router-link>
-			<router-link to="/projects">Projects</router-link>
-			<router-link to="/contacts">Contacts</router-link>
+			<router-link to="/projects">Projects</router-link>			
+			<router-link to="/gallery">Gallery</router-link>
 			<router-link to="/blogs">Blogs</router-link>
+			<router-link to="/contacts">Contacts</router-link>
 		</nav>
 	</header>
 </template>
