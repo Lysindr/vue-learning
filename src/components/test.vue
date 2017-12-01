@@ -2,6 +2,7 @@
 	<section>
 		<h1>Значение переменной компонента test.vue *titleMessage*: {{ titleMessage }}</h1>
 		<p>Ниже выводим компонент field.vue</p>
+
 		<hr>
 		<app-input v-bind:propMessage="titleMessage" @messageChange="titleMessage = $event"></app-input>
 		
@@ -17,7 +18,7 @@
 		
 		data: function() {
 			return {
-				titleMessage: 'Тестовый заголовок'
+				titleMessage: 'Тест'
 			}
 		},
 		components: {

@@ -1,6 +1,16 @@
 <template>
 	<section>
 		<h2>Галерея</h2>
+
+		<pagination
+			v-bind:current="currentPage"
+			v-bind:total="totaslPhotos" 
+			v-bind:perPage="perPage"
+			@page-changed="fetchPohotos"
+		>
+		 	
+		 </pagination>
+
 		<div class="gallery__container">
 			<div class="gallery__card-wrapper" v-for="photo in photos">
 				<div class="gallery__card">
@@ -22,6 +32,7 @@
 
 
 <script>
+import Pagination from '../components/pagination.vue';
 
 //Service https://unsplash.com
 const unsplashId = 'd14afeb2dd8a4c24cf34abddc05b4050326dcaee9a2fa8209c9220ebd827f92f';
@@ -30,28 +41,33 @@ export default {
 	data() {
 		return {
 			photos: [],
-			totaslPhotos: 2,
+			totaslPhotos: 0,
 			perPage: 9,
 			currentPage: 1
 		}
+	},
+	components: {
+		pagination: Pagination
 	},
 	methods: {
 		fetchPohotos(page) {
 			var options= {
 				params: {
 					client_id: unsplashId,
-					page: page,
-					order_by: 'latest',
-					per_page: this.perPage
+					page: page, // номер страницы
+					order_by: 'latest', 
+					per_page: this.perPage // кол-во изображений на странице
 				}
 			}
 
 			this.$http.get('https://api.unsplash.com/photos', options).then(function(response) {
 
 				console.log(response);
+
 				this.photos = response.data;
 				this.totaslPhotos = parseInt(response.headers.get('x-total'));
 				this.currentPage = page;
+
 				console.log(photos);
 
 			}, function(error) {
@@ -76,7 +92,7 @@ export default {
 	}
 
 	.gallery__card-wrapper {
-		width: 33%;
+		width: 33.33%;
 		padding: 10px;
 		box-sizing: border-box;
 		
