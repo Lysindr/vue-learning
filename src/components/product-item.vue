@@ -4,7 +4,7 @@
 		<p>Product price: <strong>{{ productData.price }}</strong></p>
 		<p>In stock: <strong>{{ productData.qt }}</strong></p>
 
-		<button v-on:click="viewDetails()">Vie details</button>		
+		<button v-on:click="viewDetailsClick()">Vie details</button>		
 	</div>
 </template>
 
@@ -21,8 +21,10 @@
 			}
 		},
 		methods: {
-			viewDetails() {
-				this.$emit('viewDetails', this.index);
+			viewDetailsClick() { 
+				// создаем событие 'viewDetails', которое принимает 'productData' -
+				// обьект, хранящий инфо о продукте
+				this.$emit('viewDetails', this.productData);
 			}
 		}
 	}
@@ -40,7 +42,18 @@
 		}
 
 		button {
+			padding: 10px 15px;
+			background-color: #42b983;
+			color: #fff;
+			border-radius: 5px;
+			border: 0;
 			cursor: pointer;
+			transition: .3s all;
+			&:hover,
+			&:focus {
+				outline: 0;
+				background-color: darken(#42b983, 15%);
+			}
 		}
 	}
 </style>

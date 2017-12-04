@@ -8,17 +8,19 @@
 					:productData="product"  
 					:index="(i + 1)"
 					v-for="(product, i) in products" 
-					@viewDetails="viewParentDetails"
+					@viewDetails="viewChildDetails"
 					:key="product.id" >				
 				</product-item>
 				<!-- :productData="product" - запишим в переменную productData обьект 'product', который содержит информацию о текущем продукте в цикле и передадим 
 						это значение в дочерний компонент 'product-item.vue'. В нем укажим обьект props: ['productData'] - который принимает этот параметр;
 				 -->
 			</div>
+
 			<div class="products-details">
-				<p><strong>Product title: {{ viewedId }} </strong> </p>
-				<p><strong>Product price: </strong> </p>
-				<p><strong>Product quantity: </strong> </p>
+				<p><strong>Product id: {{ viewdId }}</strong></p>
+				<p><strong>Product title: {{ viewTitle }}</strong> </p>
+				<p><strong>Product price: {{ viewPrice }} </strong> </p>
+				<p><strong>Product quantity:  {{ viewQt }} </strong> </p>
 			</div>
 		</div>
 		
@@ -53,16 +55,26 @@
 						qt: 589
 					}
 				],
-				viewedId: null
+				viewdId: null,
+				viewTitle: null,
+				viewPrice: null,
+				viewQt: null
 			}
 		},
 		components: {
 			'product-item': productItem
 		},
 		methods: {
-			viewParentDetails(id) {
-				console.log(id);
-				this.viewedId = id;
+			viewChildDetails(product) {
+				console.log(product.id);
+				this.viewdId = product.id;
+				this.viewTitle = product.title;
+				this.viewPrice = product.price;
+				this.viewQt = product.qt;
+
+				// если нужно передать данные компоненту на одном уровне с текущим, то
+				// эмитируем это событие дальше
+				this.$emit('viewDetails', product);
 			}
 		}
 	}

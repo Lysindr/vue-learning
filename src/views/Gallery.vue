@@ -18,6 +18,8 @@
 					<div class="gallery__card-footer">
 						<p>
 							<strong>Author:</strong>
+							<router-link :to="{ name: 'user', params: { username: photo.user.username } }">Go to User</router-link>
+							
 							<a v-bind:href="photo.user.portfolio_url">{{ photo.user.name }}</a>
 							<img v-bind:src="photo.user.profile_image.medium" alt="">
 						</p>
@@ -33,9 +35,10 @@
 
 <script>
 import Pagination from '../components/pagination.vue';
+import apiConfigs from '../apiConfigs.json';
 
 //Service https://unsplash.com
-const unsplashId = 'd14afeb2dd8a4c24cf34abddc05b4050326dcaee9a2fa8209c9220ebd827f92f';
+// const unsplashId = 'd14afeb2dd8a4c24cf34abddc05b4050326dcaee9a2fa8209c9220ebd827f92f';
 
 export default {
 	data() {
@@ -53,7 +56,7 @@ export default {
 		fetchPohotos(page) {
 			var options= {
 				params: {
-					client_id: unsplashId,
+					client_id: apiConfigs.unsplashId,
 					page: page, // номер страницы
 					order_by: 'latest', 
 					per_page: this.perPage // кол-во изображений на странице
@@ -68,7 +71,7 @@ export default {
 				this.totaslPhotos = parseInt(response.headers.get('x-total'));
 				this.currentPage = page;
 
-				console.log(photos);
+				console.log(this.photos);
 
 			}, function(error) {
 				console.log(error);
