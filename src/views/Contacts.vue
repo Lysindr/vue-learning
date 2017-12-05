@@ -1,5 +1,17 @@
 <template>
 	<section>
+		<div>
+			<h2>Vue JS and FireBase simple Application </h2>
+			<hr>
+			<h3>Books list</h3>
+			
+		</div>
+
+
+		<br>
+		<br>
+		<br>
+
 		<h2>Страница Контакты</h2>
 		<ul>
 			<li>
@@ -14,3 +26,19 @@
 		</ul>
 	</section>
 </template>
+
+<script>
+// import FireBase from '../firebase.js';
+
+	export default {
+		// firebase: {
+		// 	books: bookRef
+		// },
+		data() {
+			return {
+				// books: []
+			}
+		}
+	}
+
+</script>

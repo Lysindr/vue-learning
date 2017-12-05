@@ -2,8 +2,13 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 
+import firebase from 'firebase'
+import VueFire from 'vuefire'
+
 Vue.use(VueResource);
 Vue.use(VueRouter);
+Vue.use(firebase);
+Vue.use(VueFire);
 
 // Для работы vue-router нужно создать базовый экземпляр и передать в него настройки
 // (например, массив со всеми маршрутами(страницами) для приложения)
@@ -32,6 +37,23 @@ const router= new VueRouter({
 
 
 
+// Initialize Firebase
+const configFireBase = {
+	apiKey: "AIzaSyCDIipHQQUNcS8g9QckSWMDAxyOQbb83Ns",
+	authDomain: "vuejs-firebase-learning.firebaseapp.com",
+	databaseURL: "https://vuejs-firebase-learning.firebaseio.com",
+	projectId: "vuejs-firebase-learning",
+	storageBucket: "vuejs-firebase-learning.appspot.com",
+	messagingSenderId: "631784825946"
+};
+
+let app = firebase.initializeApp(configFireBase);
+let db = app.database();
+
+let booksRef = db.ref('books');
+
+
+
 
 // ***  Imports components
 import App from './App.vue'
@@ -46,12 +68,32 @@ Vue.component('test-vue', Test); // глобальный компонент, м�
 new Vue({
 	el: '#app',
 	router: router,
+	firebase: {
+		books: booksRef
+	},
+	data: {
+		newBook: {
+			title: '',
+			author: '',
+			url: ''
+		}
+		
+	},
 	components: {
 		'posts': Posts,
 		'main-header': MainHeader
 	},
 	methods: {
-		
+		addBook() {
+			booksRef.push(this.newBook);
+			this.newBook.title = '';
+			this.newBook.author = '';
+			this.newBook.url = '';
+			console.log('qwe');
+		},
+		deleteBook(book) {
+			booksRef.child(book['.key']).remove();
+		}
 	}//,
 	// render: h => h(App) 
 }) 
