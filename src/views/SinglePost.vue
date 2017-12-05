@@ -23,8 +23,10 @@ export default {
 	created: function() {
 		// обьект '$route' содержит данные касающиеся маршрута, так и параметры (params), которые мы в него передаем
 		// из компонента 'Blog.vue'
-		var postId = this.$route.params.id;  
+		
+		var postId = this.$route.params.id;
 		this.article = this.articles[postId];
+
 		console.log(this.$route);
 	}
 }

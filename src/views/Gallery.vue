@@ -1,35 +1,44 @@
 <template>
 	<section>
-		<h2>Галерея</h2>
+		<h2>Gallery</h2>
+		<h3>Photos provided by <a class="link" href="https://unsplash.com?utm_source=vue_learning&utm_medium=referral&utm_campaign=api-credit">Unsplash</a></h3>
 
 		<pagination
 			v-bind:current="currentPage"
 			v-bind:total="totaslPhotos" 
 			v-bind:perPage="perPage"
 			@page-changed="fetchPohotos"
-		>
-		 	
+		>		 	
 		 </pagination>
+		 
+
+	 	<div class="loader" v-if="loading"></div> 
+		 
 
 		<div class="gallery__container">
 			<div class="gallery__card-wrapper" v-for="photo in photos">
 				<div class="gallery__card">
-					<img :src="photo.urls.small" alt="">
+					<img class="gallery__image" :src="photo.urls.small" alt="">
 					<div class="gallery__card-footer">
-						<p>
-							<strong>Author:</strong>
-							<router-link :to="{ name: 'user', params: { username: photo.user.username } }">Go to User</router-link>
-							
-							<a v-bind:href="photo.user.portfolio_url">{{ photo.user.name }}</a>
+						<div class="gallery__card-footer-left">
 							<img v-bind:src="photo.user.profile_image.medium" alt="">
-						</p>
+						</div>
+
+						<div class="gallery__card-footer-right">
+							<strong>Photo by:</strong>
+							<a class="link" v-bind:href="photo.user.links.html + utmUrl" target="_blank">{{ photo.user.name }}</a>
+
+							<p>
+								<router-link class="link" :to="{ name: 'user', params: { username: photo.user.username } }">View profile</router-link>	
+							</p>
+						</div>
 
 					</div>
 				</div>
 			</div>
 			
 		</div>
-	</section>
+	</section> 
 </template>
 
 
@@ -43,9 +52,11 @@ import apiConfigs from '../apiConfigs.json';
 export default {
 	data() {
 		return {
+			utmUrl: '?utm_source=vue_learning&utm_medium=referral&utm_campaign=api-credit',
 			photos: [],
 			totaslPhotos: 0,
 			perPage: 9,
+			loading: false,
 			currentPage: 1
 		}
 	},
@@ -63,8 +74,11 @@ export default {
 				}
 			}
 
+			this.loading = true;
+
 			this.$http.get('https://api.unsplash.com/photos', options).then(function(response) {
 
+				this.loading = false;
 				console.log(response);
 
 				this.photos = response.data;
@@ -80,7 +94,7 @@ export default {
 		}
 	},
 	created() {
-		return	this.fetchPohotos(this.currentPage);
+		this.fetchPohotos(this.currentPage);
 	}
 }
 	
@@ -104,14 +118,75 @@ export default {
 	.gallery__card {
 		box-shadow: 0 0 2px rgba(#000, .35);
 
-		img {
-			max-width: 100%;
-			height: auto;;
-		}
+		
+	}
+
+	.gallery__image {
+		max-width: 100%;
+		width: 100%;
+		height: 250px;
+		object-fit: cover;
 	}
 
 	.gallery__card-footer {
-		padding: 10px;;
+		display: flex;
+		align-items: flex-start;
+		padding: 10px;
+	}
+
+	.gallery__card-footer-left {
+		width: 64px;
+		flex-shrink: 0;
+		margin-right: 10px;
+	}
+
+	.gallery__card-footer-right {
+		flex-grow: 1;
+	}
+
+	.link {
+		color: #42b983;
+	}
+
+	.loader {
+		position: relative;
+		width: 50px;
+		height: 50px;
+		margin-left: auto;
+		margin-right: auto;
+		border-radius: 50%;
+		// background-color: #ccc;
+		transition: .5s all;	
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			border-top: 4px solid #42b983;
+			border-left: 4px solid transparent;
+			border-right: 4px solid transparent;
+			border-bottom: 4px solid transparent;
+			transition: .5s all;
+			animation-name: loader;
+			animation-duration: 1.5s;
+			animation-fill-mode: forwards;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+			box-sizing: border-box;
+		}
+	}
+
+	@keyframes loader {
+		from {
+			transform: rotate(0);
+		}
+
+		to {
+			transform: rotate(360deg);
+		}
 	}
 
 

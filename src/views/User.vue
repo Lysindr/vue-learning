@@ -24,7 +24,6 @@
 
 import apiConfigs from '../apiConfigs.json';
 
-
 export default {
 	data() {
 		return {
@@ -52,7 +51,6 @@ export default {
 			}, function(error) {
 				console.log(error);
 			});
-
 		},
 
 		fetchUserPhotos() {
@@ -78,7 +76,6 @@ export default {
 			}, function(error) {
 				console.log(error);
 			});
-
 		}
 	},
 	created() {
@@ -87,8 +84,10 @@ export default {
 	}
 }
 
-
 </script>
+
+
+
 
 <style lang="scss">
 	.photos {
@@ -109,14 +108,14 @@ export default {
 	}
 
 	.slide-fade-enter-active {
-  transition: all 1.3s ease;
-}
-.slide-fade-leave-active {
-  transition: all 1.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active до версии 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
-}
+		transition: all 1.3s ease;
+	}
+	.slide-fade-leave-active {
+		transition: all 1.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+	}
+	.slide-fade-enter, .slide-fade-leave-to
+	/* .slide-fade-leave-active до версии 2.1.8 */ {
+		transform: translateX(10px);
+		opacity: 0;
+	}
 </style>

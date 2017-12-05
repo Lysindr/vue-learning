@@ -17,15 +17,16 @@ import SinglePost from './views/SinglePost.vue'
 import Gallery from './views/Gallery.vue'
 import User from './views/User.vue'
 
-var router= new VueRouter({
+const router= new VueRouter({
+	// mode: 'history',
 	routes: [
-		{ path: '/brands', component: Brands}, // страница 'brands', содержимое = компонент './views/Brands.vue'
-		{ path: '/projects', component: Projects},
-		{ path: '/contacts', component: Contacts},
-		{ path: '/blogs', component: Blog},
-		{ path: '/post/:id', name: 'post', component: SinglePost},
-		{ path: '/gallery', component: Gallery},
-		{ path: '/user/:username', name: 'user', component: User}
+		{ path: '/brands', component: Brands }, // страница 'brands', содержимое = компонент './views/Brands.vue'
+		{ path: '/projects', component: Projects },
+		{ path: '/contacts', component: Contacts },
+		{ path: '/blogs', component: Blog },
+		{ path: '/post/:id', name: 'post', component: SinglePost },
+		{ path: '/gallery', component: Gallery },
+		{ path: '/user/:username', name: 'user', component: User }
 	]
 });
 
