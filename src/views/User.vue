@@ -31,7 +31,7 @@ export default {
 			username: this.$route.params.username,
 			userData: {},
 			totalPhotos: 0,
-			perPage: 6,
+			perPage: 9,
 			userPhotos: []
 		}
 	},

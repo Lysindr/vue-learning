@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+
 // Initialize Firebase
 const configFireBase = {
 	apiKey: "AIzaSyCDIipHQQUNcS8g9QckSWMDAxyOQbb83Ns",
@@ -11,7 +12,8 @@ const configFireBase = {
 
 
 let app = firebase.initializeApp(configFireBase);
-const db = app.database()
-let booksRef = db.ref('books');
+
+export  const db = app.database();
+
 
 // Export the database for components to use.
