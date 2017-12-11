@@ -67,10 +67,12 @@
 		methods: {
 			viewChildDetails(product) {
 				console.log(product.id);
+				console.log(product);
 				this.viewdId = product.id;
 				this.viewTitle = product.title;
 				this.viewPrice = product.price;
 				this.viewQt = product.qt;
+
 
 				// если нужно передать данные компоненту на одном уровне с текущим, то
 				// эмитируем это событие дальше

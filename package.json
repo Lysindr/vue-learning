@@ -10,7 +10,10 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vue": "^2.4.4"
+    "firebase": "^4.8.0",
+    "vue": "^2.4.4",
+    "vue-router": "^3.0.1",
+    "vuefire": "^1.4.5"
   },
   "browserslist": [
     "> 1%",
