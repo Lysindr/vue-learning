@@ -13,13 +13,13 @@ Vue.use(VueFire);
 // (например, массив со всеми маршрутами(страницами) для приложения)
 
 // *** Imports Views components (PAGES)
-import Brands from './views/Brands.vue'
-import Contacts from './views/Contacts.vue'
-import Projects from './views/Projects.vue'
-import Blog from './views/Blog.vue'
-import SinglePost from './views/SinglePost.vue'
-import Gallery from './views/Gallery.vue'
-import User from './views/User.vue'
+import Brands from './views/Brands.vue';
+import Contacts from './views/Contacts.vue';
+import Projects from './views/Projects.vue';
+import Blog from './views/Blog.vue';
+import SinglePost from './views/SinglePost.vue';
+import Gallery from './views/Gallery.vue';
+import User from './views/User.vue';
 
 const router= new VueRouter({
 	// mode: 'history',
@@ -36,14 +36,20 @@ const router= new VueRouter({
 
 
 // ***  Imports components
-import App from './App.vue'
-import Test from './components/test.vue'
-import Posts from './components/posts.vue'
-import MainHeader from './components/main-header.vue' 
+import App from './App.vue';
+import Test from './components/test.vue';
+import Posts from './components/posts.vue';
+import MainHeader from './components/main-header.vue';
+import appSideMenu from './components/app-sidemenu.vue';
 
 Vue.component('test-vue', Test); // глобальный компонент, можем использовать в других файлах 
 // Если компонент нужно использовать в одном/нескольких компонентах, можно импортировать 
 // их в нужном компоненте локально (пример posts.vue импортируем в компонент App.vue)
+
+
+//Global events start
+export const toggleAsideMenu = new Vue();
+//Global events end
 
 new Vue({
 	el: '#app',
@@ -53,7 +59,8 @@ new Vue({
 	},
 	components: {
 		'posts': Posts,
-		'main-header': MainHeader
+		'main-header': MainHeader,
+		'app-sidemenu': appSideMenu
 	},
 	methods: {
 		

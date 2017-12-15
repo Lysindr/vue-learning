@@ -7,20 +7,8 @@
 <body>
 	<div id="app">
 
-		<main-header></main-header>
-
-		<!-- <h2>Add Book</h2>
-		<div v-for="book in books">
-			<p>Book title: <a v-bind:href="book.url">{{ book.title }}</a>, author: <strong>{{ book.author }}</strong></p>
-			<div><button @click="deleteBook(book)">Delete book</button></div>
-		</div>
-		<div>
-			<input type="text" placeholder="Enter title" v-model="newBook.title">
-			<input type="text" placeholder="Enter author" v-model="newBook.author">
-			<input type="text" placeholder="Enter url" v-model="newBook.url">
-			<button @click="addBook()">Add book</button>			
-		</div> -->
-
+		<main-header></main-header>		
+		<app-sidemenu></app-sidemenu>
 		<div class="main-content">
 			<router-view></router-view>
 		</div>
@@ -36,6 +24,7 @@
 		}
 		
 		body {
+			margin: 0;
 			font-family: 'Avenir', Helvetica, Arial, sans-serif;
 		}
 

@@ -1,5 +1,6 @@
 <template>
 	<header class="main-header">
+		<button @click="emitGlobalToggleSideMenu()">Menu</button>
 		<img class="main-header__logo" src="../assets/logo.png">
 		<nav class="main-nav">
 			<router-link to="/brands">Brands</router-link>
@@ -11,7 +12,27 @@
 	</header>
 </template>
 
+<script>
+// Import global events 'toggleAsideMenu'
+import {toggleAsideMenu} from '../main.js';
 
+	export default {
+		data() {
+			return {
+				clickCount: 0
+			}
+		},
+		methods: {
+			emitGlobalToggleSideMenu() {
+				console.log('aaaaa');
+				this.clickCount++;
+				console.log(clickCount);
+				//Send the event on a channel (i-got-clicked) with a payload (the click count.)
+				toggleAsideMenu.$emit('i-got-clicked', this.clickCount);
+			}
+		}
+	}
+</script>
 
 
 
